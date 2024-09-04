@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->id();
+        // $table->timestamp('created_at')->nullable(); 
+            // $table->unsignedInteger('created_at');
+            $table->string('title', 100);
+            $table->foreignId('category_id')->constrained('categories');
+            $table->string('content', 100);
+            $table->integer('no_of_views')->default(0);
+            $table->boolean('published');
+            $table->boolean('trending');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

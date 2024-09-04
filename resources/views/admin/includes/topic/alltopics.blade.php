@@ -21,6 +21,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                                @foreach($topics as $topic)
                         <tr>
                             <th scope="row">18 Jul 2024</th>
                             <td><a class="text-decoration-none text-dark" href="topic_details.html">Machine learning</a>
@@ -33,66 +34,7 @@
                             <td class="text-center"><a class="text-decoration-none text-dark" href="edit_topic.html"><img src="{{asset('adminassets/images/edit-svgrepo-com.svg')}}"></a></td>
                             <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
                         </tr>
-                        <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td><a class="text-decoration-none text-dark" href="topic_details.html">Machine learning</a>
-                            </td>
-                            <td>Computer Science</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>12</td>
-                            <td>YES</td>
-                            <td>NO</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_topic.html"><img src="{{asset('adminassets/images/edit-svgrepo-com.svg')}}"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td><a class="text-decoration-none text-dark" href="topic_details.html">Machine learning</a>
-                            </td>
-                            <td>Computer Science</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>12</td>
-                            <td>YES</td>
-                            <td>NO</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_topic.html"><img src="{{asset('adminassets/images/edit-svgrepo-com.svg')}}"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 May 2024</th>
-                            <td><a class="text-decoration-none text-dark" href="topic_details.html">Machine learning</a>
-                            </td>
-                            <td>Computer Science</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>12</td>
-                            <td>YES</td>
-                            <td>NO</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_topic.html"><img src="{{asset('adminassets/images/edit-svgrepo-com.svg')}}"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">10 Oct 2024</th>
-                            <td><a class="text-decoration-none text-dark" href="topic_details.html">Deep learning</a>
-                            </td>
-                            <td>Computer Science</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>12</td>
-                            <td>YES</td>
-                            <td>YES</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_topic.html"><img src="{{asset('adminassets/images/edit-svgrepo-com.svg')}}"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 Dec 2024</th>
-                            <td><a class="text-decoration-none text-dark" href="topic_details.html">Social Media
-                                    Marketing</a></td>
-                            <td>Public Relations</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>12</td>
-                            <td>YES</td>
-                            <td>YES</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_topic.html"><img src="{{asset('adminassets/images/edit-svgrepo-com.svg')}}"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
+            @endforeach
                     </tbody>
                 </table>
             </div>

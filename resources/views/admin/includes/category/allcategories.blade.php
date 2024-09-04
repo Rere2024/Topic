@@ -15,30 +15,28 @@
                         </tr>
                     </thead>
                     <tbody>
+                      @foreach($categories as $category)
                         <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td>Computer Science</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_category.html"><img src="{{asset('adminassets/images/edit-svgrepo-com.svg')}}"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
+                            <th scope="row">{{$category->created_at->format('Y-m-d H:i:s')}}</th>
+                            <td>{{ $category->category_name }}</td>
+                            <td><a href="{{route('categories.edit', $category['id'])}}">Edit
+                            <img src="{{asset('adminassets/images/edit-svgrepo-com.svg')}}"></a></td>
+
+                             {{-- <td class="text-center"><a class="text-decoration-none text-dark" href="#">
+                            <img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td> --}}
+
+                            <td>
+                            <form action="" 
+                            onclick=" return confirm('Are you sure you want to delete?')"method="POST" >
+                            @csrf
+                            @method("delete")
+                            <img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
+                            <button type="submit" class="btn btn-link m-0 p-0"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></button>
+                           </form>
+                            </td>
+                            <img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td> 
                         </tr>
-                        <tr>
-                            <th scope="row">18 Dec 2024</th>
-                            <td>Public Relations</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_category.html"><img src="{{asset('adminassets/images/edit-svgrepo-com.svg')}}"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 Dec 2024</th>
-                            <td>Marketing</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_category.html"><img src="{{asset('adminassets/images/edit-svgrepo-com.svg')}}"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 Dec 2024</th>
-                            <td>Operating Systems</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_category.html"><img src="{{asset('adminassets/images/edit-svgrepo-com.svg')}}"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

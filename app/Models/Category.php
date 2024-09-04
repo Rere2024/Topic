@@ -5,23 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-class Topic extends Model
+class Category extends Model
 {
     use HasFactory;
     use SoftDeletes;
     protected $fillable = [
-
         // 'created_at',
-        'title',
-        'category_id',
-        'content',
-        'no_of_views',
-        'published',
-        'trending',
-    ];
+        'category_name',
 
-    public function category() {
-        return $this->belongsTo(Category::class);
-}
+
+    ];
+    public function topics()
+    {
+        return $this->hasMany(Topic::class, 'category_id', 'id');
+    }
 }
