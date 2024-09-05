@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 @section('content')
 
-        @include('admin.includes.user.allusers')
+        @include('admin.includes.user.All-users')
 
 @endsection

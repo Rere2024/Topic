@@ -5,14 +5,16 @@ use App\Http\Controllers\admin\TopicController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\TopicController as ControllersTopicController;
 use App\Http\Controllers\UserController;
 use App\Models\Category;
+use App\Models\Topic;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
+//public
 Route::group([
     'controller' => PublicController::class,
 ], function () {
@@ -24,7 +26,7 @@ Route::group([
 
 });
 
-
+//admin
 Route::group([
     'controller' => AdminController::class,
 ], function () {
@@ -50,11 +52,9 @@ Route::group([
 
 });
 
-
-
-Route::prefix('admin')-> group(function () {
-    Route::group([
-        'prefix' => 'categories',
+//categories
+    Route::prefix('admin')-> group(function () {
+    Route::group(['prefix' => 'categories',
         ],function () {
         Route::get('', [CategoryController::class, 'index'])->name('categories.index');
         Route::get('{id}/show', [CategoryController::class, 'show'])->withTrashed()->name('admin.categories.show');
@@ -63,22 +63,33 @@ Route::prefix('admin')-> group(function () {
         Route::get('{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
         Route::put('{id}', [CategoryController::class, 'update'])->name('categories.update');
         Route::delete('{id}/delete', [CategoryController::class, 'destroy'])->name('categories.destroy');
+        Route::delete('{id}/delete', [CategoryController::class, 'delete'])->name('categories.delete');
         Route::get('trashed', [CategoryController::class, 'showDeleted'])->name('categories.showDeleted');
         Route::patch('{id}', [CategoryController::class, 'restore'])->name('categories.restore');
-        Route::delete('{id}/forcedelete', [CategoryController::class, 'forcedelete'])->name('categories.forcedelete');
+        Route::delete('{id}/forceDelete', [CategoryController::class, 'forceDelete'])->name('categories.forceDelete');
     });
+
+//topics
+    Route::group([
+        'controller' => TopicController::class,
+        'prefix' => 'topics',
+        'as' => 'topics.',
+        ],function () {
+    Route::get('','index')->name('index'); 
+    Route::get('create',  'create')->name('create');
+    Route::post('store',  'store')->name('store');
+    Route::get('trashed',  'showDeleted')->name('showDeleted');
+    Route::get('{id}/edit',  'edit')->name('edit'); 
+    Route::get('{id}/show',  'show')->name('show');
+    Route::put('{id}/update',  'update')->name('update');
+    Route::get('{id}/delete',  'destroy')->name('destroy');
+    Route::delete('{id}/delete',  'delete')->name('delete');
+    Route::patch('{id}/restore',  'restore')->name('restore');
+    Route::delete('{id}/force',  'forceDelete')->name('forceDelete');
+    Route::get('store',  'store')->name('store');
+
+     });
     
-// Route::prefix('admin')->group(function () {
-//     Route::prefix('Topics')->group(function () {
-//         Route::get('', [TopicController::class, 'index'])->name('topics.index');
-//         Route::get('{id}/show', [ClassController::class, 'show'])->withTrashed()->name('admin.classes.show');
-//         Route::get('create', [ClassController::class, 'create'])->name('classes.create');
-//         Route::post('', [ClassController::class, 'store'])->name('classes.store');
-//         Route::get('{id}/edit', [ClassController::class, 'edit'])->name('classes.edit');
-//         Route::put('{id}', [ClassController::class, 'update'])->name('classes.update');
-//         Route::delete('{id}/delete', [ClassController::class, 'destroy'])->name('classes.destroy');
-//         Route::get('trashed', [ClassController::class, 'showDeleted'])->name('clases.showDeleted');
-//         Route::patch('{id}', [ClassController::class, 'restore'])->name('classes.restore');
-//         Route::delete('{id}/forcedelete', [ClassController::class, 'forcedelete'])->name('classes.forcedelete');
-    // });
- });
+
+    });
+ 

@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 @section('content')
 
-        @include('admin.includes.topic.topicdetails')
+        @include('admin.includes.topic.topic-details')
 
 @endsection

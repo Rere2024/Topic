@@ -14,6 +14,7 @@ class Topic extends Model
 
         // 'created_at',
         'title',
+        'image',
         'category_id',
         'content',
         'no_of_views',
