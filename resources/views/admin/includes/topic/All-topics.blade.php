@@ -25,7 +25,7 @@
                                 @foreach($topics as $topic)
                         <tr>
                             <th scope="row">{{$topic->created_at->format('d M Y')}}</th>
-                            <td><a class="text-decoration-none text-dark" href="{{route('topicdetails')}}">{{$topic['title']}}</a>
+                            <td><a class="text-decoration-none text-dark" href="{{route('topicdetails')}}">{{Str::limit($topic['title'],20,'.....')}}</a>
                             <td>{{$topic['image']}}</td>
                             </td>
                             <td>{{$topic->category->category_name }}</td>

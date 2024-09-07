@@ -52,11 +52,11 @@
                     USERS
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{route('adduser')}}">Add user</a></li>
+                    <li><a class="dropdown-item" href="{{route('users.create')}}">Add user</a></li>
                     <li>
                       <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="{{route('users')}}">All users</a></li>
+                    <li><a class="dropdown-item" href="{{route('users.index')}}">All users</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -91,14 +91,14 @@
                     TESTIMONIALS
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{route('addtestimonial')}}">Add testimonial</a></li>
+                    <li><a class="dropdown-item" href="{{route('testimonials.create')}}">Add testimonial</a></li>
                     <li>
                       <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="{{route('testimonials')}}">All testimonials</a></li>
+                    <li><a class="dropdown-item" href="{{route('testimonials.index')}}">All testimonials</a></li>
                   </ul>
                 </li>
-                <li><a class="nav-item nav-link" href="{{route('messages')}}">MESSAGES</a></li>
+                <li><a class="nav-item nav-link" href="{{route('messages.index')}}">MESSAGES</a></li>
               </ul>
             </div>
           </div>

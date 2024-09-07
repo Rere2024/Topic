@@ -10,13 +10,15 @@ class Category extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable = [
-        // 'created_at',
+
         'category_name',
 
 
     ];
     public function topics()
     {
-        return $this->hasMany(Topic::class, 'category_id', 'id');
+            return $this->hasMany(Topic::class);
+
+        // return $this->hasMany(Topic::class, 'category_id', 'id');
     }
 }

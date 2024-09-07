@@ -17,7 +17,10 @@ class testimonialFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name'=> fake()->randomElement(['Rehab', 'Mohammed','Adam', 'Farida','Nora','Noha']),
+            'content'=>fake()->sentence(),
+            'published' => fake()->numberBetween(0, 1),
+            'image' =>basename(fake()->image(public_path('adminassets/images/testimonials'))),
         ];
     }
 }

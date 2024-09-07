@@ -3,10 +3,11 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\admin\TopicController;
 use App\Http\Controllers\admin\CategoryController;
-use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\admin\TestimonialController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\MessageController;
+
 use App\Http\Controllers\TopicController as ControllersTopicController;
-use App\Http\Controllers\UserController;
 use App\Models\Category;
 use App\Models\Topic;
 use Illuminate\Support\Facades\Route;
@@ -86,10 +87,66 @@ Route::group([
     Route::delete('{id}/delete',  'delete')->name('delete');
     Route::patch('{id}/restore',  'restore')->name('restore');
     Route::delete('{id}/force',  'forceDelete')->name('forceDelete');
-    Route::get('store',  'store')->name('store');
 
      });
+
+//testimonials
+Route::group([
+    'controller' => TestimonialController::class,
+    'prefix' => 'testimonials',
+    'as' => 'testimonials.',
+    ],function () {
+Route::get('','index')->name('index'); 
+Route::get('create',  'create')->name('create');
+Route::post('store',  'store')->name('store');
+Route::get('trashed',  'showDeleted')->name('showDeleted');
+Route::get('{id}/edit',  'edit')->name('edit'); 
+// Route::get('{id}/show',  'show')->name('show');
+Route::put('{id}/update',  'update')->name('update');
+Route::get('{id}/delete',  'destroy')->name('destroy');
+Route::delete('{id}/delete',  'delete')->name('delete');
+Route::patch('{id}/restore',  'restore')->name('restore');
+Route::delete('{id}/force',  'forceDelete')->name('forceDelete');
+ });
     
+ //users
+ 
+Route::group([
+    'controller' => UserController::class,
+    'prefix' => 'users',
+    'as' => 'users.',
+    ],function () {
+Route::get('','index')->name('index'); 
+Route::get('create',  'create')->name('create');
+Route::post('store',  'store')->name('store');
+Route::get('{id}/edit',  'edit')->name('edit'); 
+Route::put('{id}/update',  'update')->name('update');
+
+ });
+
+ //message
+ Route::group([
+    'controller' => MessageController::class,
+    'prefix' => 'messages',
+    'as' => 'messages.',
+    ],function () {
+Route::get('','index')->name('index'); 
+Route::get('create',  'create')->name('create');
+Route::post('store',  'store')->name('store');
+Route::get('trashed',  'showDeleted')->name('showDeleted');
+Route::get('{id}/edit',  'edit')->name('edit'); 
+// Route::get('{id}/show',  'show')->name('show');
+Route::put('{id}/update',  'update')->name('update');
+Route::get('{id}/delete',  'destroy')->name('destroy');
+Route::delete('{id}/delete',  'delete')->name('delete');
+Route::patch('{id}/restore',  'restore')->name('restore');
+Route::delete('{id}/force',  'forceDelete')->name('forceDelete');
+ });
+    
+
 
     });
  
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

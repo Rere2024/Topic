@@ -20,9 +20,14 @@
 
                         <tr>
 
-                        <th scope="row">{{$category->created_at->format('d M Y')}}</th>
-                        <td>{{ $category->category_name }}</td>
-                         <td>
+                            <th scope="row">
+                            @if($category->created_at)
+                            {{ $category->created_at->format('d M Y') }}  
+                            @else
+                             {{'No Date Available'}}
+                              @endif </th>
+                            <td>{{ $category->category_name }}</td>
+                            <td>
 
                             <a href="{{route('categories.edit', $category['id'])}}">
                             <img src="{{asset('adminassets/images/edit-svgrepo-com.svg')}}"></a></td>
