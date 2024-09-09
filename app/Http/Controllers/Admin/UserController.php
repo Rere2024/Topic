@@ -1,25 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Traits\Common;
+
 
 class UserController extends Controller
 
 {
-    use Common;
-
     //index
     public function index()
     {
-        // $topics = Topic::get();
+        // $users = User::latest()->paginate(10);
         $users = User::get();
         return view('admin.users.index', compact('users'));
     }  
@@ -27,28 +23,30 @@ class UserController extends Controller
     //create
     public function create()
     {
-
+        // $users = User::select('id')->get();
         return view('admin.users.create');
 
     }
 
     //store
-    public function store(Request $request)
+    public function store(Request $request )
     {
         $data = $request->validate([
-            // 'fullname' => 'required|string|max:255|',
-            'first_name' =>  'required|string|max:255',
+
+            'first_name' => 'required|string|max:255',
             'last_name' =>  'required|string|max:255',
-            'username' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'password' =>  'required|string|confirmed|min:8',
-            'confirm_password' =>  'required|string',
-            'phone' => 'required|string|regex:/^(\+?\d{1,3})?[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/',
+            'user_name' => 'required|string|max:255|unique:users,user_name',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'phone' => 'required|string|regex:/^[\d\s\-\+\(\)]+$/',
+
         ]);
 
+        // dd($data);
+        $data['email_verified_at'] = now();
         $data['active'] = isset($request->active);
-        // $data['password'] = Hash::make($data['password']);
-       dd($data);
+        $data['password'] = Hash::make($data['password']);
+
         user::create($data);
         return redirect()->route('users.index');
     }
@@ -62,8 +60,8 @@ class UserController extends Controller
     //edit
     public function edit(string $id)
     {
-        $users = User::findOrFail($id);
-        return view('admin.users.edit_user', compact('users'));
+        $user = User::findOrFail($id);
+        return view('admin.users.edit_user', compact('user'));
     }
 
 
@@ -71,19 +69,25 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->validate([
-            // 'fullname' => 'required|string|max:255|regex:/^[a-zA-Z0-9 ]+$/',
+
             'first_name' =>  'required|string|max:255',
             'last_name' =>  'required|string|max:255',
-            'username' => 'required|string|unique:users,username|max:255',
-            'email' => 'required|email|unique:users,email|max:255',
-            'password' =>  'required|string|confirmed|min:8',
-            'confirm_password' =>  'required|string',
-            'phone' => 'required|string|regex:/^(\+?\d{1,3})?[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/',
+            'user_name' => 'required|string|max:255|unique:users,user_name,' . $id,
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+            'password' => 'nullable|string|min:8|confirmed',
+            'phone' => 'required|string|regex:/^[\d\s\-\+\(\)]+$/',
         ]);
 
-            $data['active'] = isset($request->active);
-        $data['password'] = Hash::make($data['password']);
+// dd($data);
+        $data['active'] = isset($request->active);
+        // $data['password'] = Hash::make($data['password']);
 
+        if (!empty($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        } else {
+            unset($data['password']);
+
+        }
         User::where('id', $id)->update($data);
         return redirect()->route('users.index');
     }

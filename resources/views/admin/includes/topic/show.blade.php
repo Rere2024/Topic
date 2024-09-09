@@ -12,7 +12,7 @@
                       class="img-wrapper"
                     >
                       <img
-                        src="{{ asset('adminassets/images/topics' . $topic->image) }}" 
+                        src="{{ asset('adminassets/images/' . $topic->image) }}" 
                         class="rounded image-center border-5 rounded-4"
                         alt="{{ $topic->name }}"
                       />

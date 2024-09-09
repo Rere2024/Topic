@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
@@ -16,7 +16,7 @@ class TestimonialController extends Controller
     //index
     public function index()
     {
-        // $topics = Topic::get();
+
         $testimonials = Testimonial::get();
         return view('admin.testimonials.index', compact('testimonials'));
     }  

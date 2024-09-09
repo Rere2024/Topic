@@ -13,32 +13,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td><a href="message_details.html" class="text-decoration-none text-dark">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis possimus distinctio amet in explicabo ea perspiciatis, sit, modi quasi illo...</a></td>
-                            <td>Jhon Doe</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td><a href="message_details.html" class="text-decoration-none text-dark">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis possimus distinctio amet in explicabo ea perspiciatis, sit, modi quasi illo...</a></td>
-                            <td>Jhon Doe</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td><a href="message_details.html" class="text-decoration-none text-dark">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis possimus distinctio amet in explicabo ea perspiciatis, sit, modi quasi illo...</a></td>
-                            <td>Jhon Doe</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td><a href="message_details.html" class="text-decoration-none text-dark">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis possimus distinctio amet in explicabo ea perspiciatis, sit, modi quasi illo...</a></td>
-                            <td>Jhon Doe</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('adminassets/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
+                        @foreach ($readMessages as $message)
+                            <tr>
+                                <th scope="row">{{ $message->created_at->format('d M Y') }}</th>
+                                <td><a href="{{ route('messages.show', $message->id) }}"
+                                        class="text-decoration-none text-dark">
+                                        {{ Str::limit($message->message, 100) }}</a></td>
+                                         <td>{{ $message->sender_name }}</td>
+                                         <td>
+                                        <form action="{{ route('messages.delete', $category->id) }}"
+                                        onclick=" return confirm('Are you sure you want to delete?')"method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-link m-0 p-0">
+                                        <img src="{{ asset('adminassets/images/trash-can-svgrepo-com.svg') }}"></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
+        </div>

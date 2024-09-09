@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
+// use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Category;
@@ -56,8 +57,12 @@ class TopicController extends Controller
     //show
     public function show(string $id)
     {
-        $topic = Topic::with('category')->findOrFail($id);
-        return view('admin.topics.topic_details',compact('topic'));
+        // $topic = DB::table('topics')
+        // ->where('id', '=', $id)
+        // ->first();
+
+        $topic = Topic::findOrFail($id);
+        return view('admin.topics.show',compact('topic'));
     }
 
     //edit

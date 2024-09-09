@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100);
             $table->string('image')->nullable();
-            $table->foreignId('category_id');
+            $table->foreignId('category_id')->constrained('categories');
             $table->string('content', 100);
             $table->integer('no_of_views')->default(0);
             $table->boolean('published');
