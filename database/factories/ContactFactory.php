@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\message>
  */
-class messageFactory extends Factory
+class contactFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,11 @@ class messageFactory extends Factory
     public function definition(): array
     {
         return [
-            'sender_name'=> fake()->randomElement(['Rehab', 'Mohammed','Adam', 'Farida','Nora','Noha']),
+            'sender_name' => fake()->randomElement(['Rehab', 'Mohammed', 'Adam', 'Farida', 'Nora', 'Noha']),
             'email' => fake()->unique()->safeEmail(),
-            'message'=>fake()->sentence(),
+            'message' => fake()->sentence(),
+            'subject' => fake()->sentence(),
+            'is_read' => fake()->boolean(),
         ];
     }
 }

@@ -19,14 +19,12 @@ class TestimonialController extends Controller
 
         $testimonials = Testimonial::get();
         return view('admin.testimonials.index', compact('testimonials'));
-    }  
+    }
 
     //create
     public function create()
     {
-
         return view('admin.testimonials.create');
-
     }
 
     //store
@@ -39,9 +37,9 @@ class TestimonialController extends Controller
         ]);
 
         $data['published'] = isset($request->published);
-        $data['image'] = $this->uploadFile($request->image, 'adminassets/images');
+        $data['image'] = $this->uploadFile($request->image, 'adminassets/images/testimonials/');
 
-    //    dd($data);
+        //    dd($data);
         Testimonial::create($data);
         return redirect()->route('testimonials.index');
     }
@@ -50,7 +48,7 @@ class TestimonialController extends Controller
     public function show(string $id)
     {
         $testimonial = Testimonial::with('category')->findOrFail($id);
-        return view('admin.testimonials.testimonial_details',compact('testimonial'));
+        return view('admin.testimonials.testimonial_details', compact('testimonial'));
     }
 
     //edit
@@ -72,7 +70,7 @@ class TestimonialController extends Controller
 
         $data['published'] = isset($request->published);
         if ($request->hasFile('image')) {
-            $data['image'] = $this->uploadFile($request->image, 'adminassets/images');
+            $data['image'] = $this->uploadFile($request->image, 'adminassets/images/testimonials');
         }
 
         Testimonial::where('id', $id)->update($data);
@@ -103,7 +101,6 @@ class TestimonialController extends Controller
     }
 
     //forcedelete
-    // public function forceDelete(Request $request):RedirectResponse
     public function forceDelete(string $id)
     {
         // $id=$request->id;

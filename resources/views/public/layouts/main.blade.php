@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="en">
 
-        @include('public.includes.head')
+@include('public.includes.head')
 
-          <body class="topics-listing-page" id="top">
-<main> 
+<body class="topics-listing-page" id="top">
+    <main>
 
 
-@yield('content')
+        @yield('content')
 
-</main>
-         @include('public.includes.footer')
-         @include('public.includes.footerjs')
+    </main>
+    @include('public.includes.footer')
+    @include('public.includes.footerjs')
 
 </body>
 

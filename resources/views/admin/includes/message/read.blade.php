@@ -13,20 +13,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($readMessages as $message)
+                        @foreach ($readcontacts as $contact)
                             <tr>
-                                <th scope="row">{{ $message->created_at->format('d M Y') }}</th>
-                                <td><a href="{{ route('messages.show', $message->id) }}"
+                                <th scope="row">{{ $contact->created_at->format('d M Y') }}</th>
+                                <td><a href="{{ route('messages.show', $contact->id) }}"
                                         class="text-decoration-none text-dark">
-                                        {{ Str::limit($message->message, 100) }}</a></td>
-                                         <td>{{ $message->sender_name }}</td>
-                                         <td>
-                                        <form action="{{ route('messages.delete', $category->id) }}"
+                                        {{ Str::limit($contact['message'], 20, '.....') }}.</a></td>
+                                <td>{{ $contact['sender_name'] }}</td>
+                                <td>
+                                    <form action="{{ route('messages.delete', $contact['id']) }}"
                                         onclick=" return confirm('Are you sure you want to delete?')"method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-link m-0 p-0">
-                                        <img src="{{ asset('adminassets/images/trash-can-svgrepo-com.svg') }}"></button>
+                                            <img
+                                                src="{{ asset('adminassets/images/trash-can-svgrepo-com.svg') }}"></button>
                                     </form>
                                 </td>
                             </tr>

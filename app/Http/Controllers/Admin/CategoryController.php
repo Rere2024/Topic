@@ -31,7 +31,7 @@ class CategoryController extends Controller
         ]);
 
         Category::create($data);
-        // return redirect()->route('categories.index');
+ 
         $categories = Category::get();
         return view('admin.categories.index', compact('categories'));
     }
@@ -86,7 +86,7 @@ class CategoryController extends Controller
         Category::where('id', $id)->restore();
         return redirect()->route('categories.showDeleted');
     }
-    // public function forceDelete(Request $request):RedirectResponse
+
     public function forceDelete(string $id)
     {
         // $id=$request->id;

@@ -17,13 +17,13 @@ class topicFactory extends Factory
     public function definition(): array
     {
         return [
-           'title'=> fake()->sentence(),
-           'image' =>basename(fake()->image(public_path('adminassets/images/topics'))),
-          'category_id'=>fake()->numberBetween(1, 10),
-          'content'=>fake()->sentence(),
-          'no_of_views'=>fake()->numberBetween(0, 1000),
-          'published' => fake()->numberBetween(0, 1),
-          'trending' => fake()->numberBetween(0, 1),
+            'title' => fake()->sentence(),
+            'image' => basename(fake()->image(public_path('adminassets/images/topics'))),
+            'category_id' => fake()->numberBetween(1, 10),
+            'content' => fake()->sentence(),
+            'no_of_views' => fake()->numberBetween(0, 1000),
+            'published' => fake()->numberBetween(0, 1),
+            'trending' => fake()->numberBetween(0, 1),
 
         ];
     }

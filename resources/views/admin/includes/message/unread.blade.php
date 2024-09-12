@@ -10,21 +10,27 @@
                            <th scope="col">Created At</th>
                            <th scope="col">Message</th>
                            <th scope="col">Sender</th>
-                           <th scope="col">Delete</th>
+                           {{-- <th scope="col">Delete</th> --}}
+                           <th scope="col">Actions</th>
                        </tr>
                    </thead>
                    <tbody>
-                       @foreach ($unreadMessages as $message)
+                       @foreach ($unreadcontacts as $contact)
                            <tr>
-                               <th scope="row">{{ $message->created_at->format('d M Y') }}</th>
-                               <td><a href="message_details.html"
-                                       class="text-decoration-none text-dark">{{ $message->message }}.</a></td>
-                               <td>{{ $message->sender_name }}</td>
-                                  <td class="text-center">
-                                <a href="{{ route('admin.messages.markAsRead', $message->id) }}" 
-                                class="text-decoration-none text-dark">Mark as Read</a>
-                               <td>
-                                   <form action="{{ route('messages.delete', $category->id) }}"
+                               <th scope="row">{{ $contact->created_at->format('d M Y') }}</th>
+                               <td><a href="{{ route('messages.show', $contact->id) }}"
+                                       class="text-decoration-none text-dark">{{ Str::limit($contact['message'], 20, '.....') }}.</a>
+                               </td>
+                               <td>{{ $contact['sender_name'] }}</td>
+                               <td class="text-center">
+                                   <form action="{{ route('messages.markAsRead', $contact->id) }}" method="POST"
+                                       style="display:inline;">
+                                       @csrf
+                                       @method('PATCH')
+                                       <button type="submit" class="btn btn-primary">Mark as Read</button>
+                                   </form>
+
+                                   <form action="{{ route('messages.delete', $contact['id']) }}"
                                        onclick=" return confirm('Are you sure you want to delete?')"method="POST">
                                        @csrf
                                        @method('delete')

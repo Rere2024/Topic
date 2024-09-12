@@ -12,7 +12,6 @@ class Topic extends Model
     use SoftDeletes;
     protected $fillable = [
 
-        // 'created_at',
         'title',
         'image',
         'category_id',
@@ -22,7 +21,8 @@ class Topic extends Model
         'trending',
     ];
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class);
-}
+    }
 }

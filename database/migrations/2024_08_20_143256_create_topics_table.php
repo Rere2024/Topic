@@ -24,7 +24,6 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-//->constrained('categories')
     /**
      * Reverse the migrations.
      */

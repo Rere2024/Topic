@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\PublicController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\ContactMessageController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\TopicController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,10 +19,10 @@ Route::group([
     'controller' => PublicController::class,
 ], function () {
     Route::get('index', 'index')->name('index');
-    Route::get('contact', 'contact')->name('contact');
+    Route::get('contact', 'contact')->name('contact-us');
     Route::get('testimonial', 'testimonial')->name('testimonial');
     Route::get('topic-listing', 'topiclisting')->name('topiclisting');
-    Route::get('topic-details', 'topicdetails')->name('topicdetails');
+    Route::get('topic-details', 'topicdetails')->name('topic-detail');
 });
 
 //admin
@@ -122,7 +122,7 @@ Route::prefix('admin')->group(function () {
 
     //message
     Route::group([
-        'controller' => MessageController::class,
+        'controller' => ContactMessageController::class,
         'prefix' => 'messages',
         'as' => 'messages.',
     ], function () {
@@ -130,20 +130,22 @@ Route::prefix('admin')->group(function () {
         Route::get('create',  'create')->name('create');
         Route::post('store',  'store')->name('store');
         Route::get('trashed',  'showDeleted')->name('showDeleted');
-        Route::get('{id}/edit',  'edit')->name('edit');
         Route::get('{id}/show',  'show')->name('show');
-        Route::get('mark-as-read/{id}', 'markAsRead')->name('markAsRead');
         Route::get('{id}/delete',  'destroy')->name('destroy');
         Route::delete('{id}/delete',  'delete')->name('delete');
-
+        Route::patch('{id}/restore',  'restore')->name('restore');
+        Route::delete('{id}/force',  'forceDelete')->name('forceDelete');
+        // Route::get('contact-us',  'contactForm')->name('contactForm');
+        // Route::post('store',  'sendMessage')->name('sendMessage');
+        Route::patch('/{id}/read', 'markAsRead')->name('markAsRead');
     });
-
-    });
-
+});
 
 
 
 
+Route::get('contact-us', [ContactMessageController::class, 'contactForm'])->name('contectForm');
+Route::post('contact-us', [ContactMessageController::class, 'sendMessage'])->name('sendMessage');
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);

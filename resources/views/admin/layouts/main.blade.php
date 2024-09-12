@@ -1,15 +1,15 @@
    <!DOCTYPE html>
-<html lang="en">
+   <html lang="en">
 
-        @include('admin.includes.head')
+   @include('admin.includes.head')
 
-<body>
-        @include('admin.includes.header')    
-       
-        @yield('content')
-       
-        @include('admin.includes.footerjs')
- 
-</body>
+   <body>
+       @include('admin.includes.header')
 
-</html>
+       @yield('content')
+
+       @include('admin.includes.footerjs')
+
+   </body>
+
+   </html>
