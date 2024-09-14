@@ -17,7 +17,6 @@ class TopicController extends Controller
     //index
     public function index()
     {
-        // $topics = Topic::latest()->take(3)->get();
         $topics = Topic::with('category')->get();
         return view('admin.topics.index', compact('topics'));
     }

@@ -52,125 +52,62 @@
                     <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
                         aria-labelledby="design-tab" tabindex="0">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
-                                        <div class="d-flex">
-                                            <div>
-                                                <h5 class="mb-2">Web Design</h5>
+                            @foreach ($topics as $topic)
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{{ route('topic-detail', $topic['id']) }}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">{{ Str::limit($topic['title'], 20, '.....') }}
+                                                    </h5>
 
-                                                <p class="mb-0">Topic Listing Template based on Bootstrap 5</p>
+                                                    <p class="mb-0">{{ Str::limit($topic['content'], 20, '.....') }}
+                                                    </p>
+                                                </div>
+
+                                                <span
+                                                    class="badge bg-design rounded-pill ms-auto">{{ $topic['no_of_views'] }}</span>
                                             </div>
 
-                                            <span class="badge bg-design rounded-pill ms-auto">14</span>
-                                        </div>
-
-                                        <img src="{{ asset('publicassets/images/topics/undraw_Remote_design_team_re_urdx.png') }}"
-                                            class="custom-block-image img-fluid" alt="">
-                                    </a>
+                                            <img src="{{ asset('adminassets/images/topics/' . $topic->image) }}"
+                                                class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
-                                        <div class="d-flex">
-                                            <div>
-                                                <h5 class="mb-2">Graphic</h5>
-
-                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                            </div>
-
-                                            <span class="badge bg-design rounded-pill ms-auto">75</span>
-                                        </div>
-
-                                        <img src="{{ asset('publicassets/images/topics/undraw_Redesign_feedback_re_jvm0.png') }}"
-                                            class="custom-block-image img-fluid" alt="">
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 col-12">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
-                                        <div class="d-flex">
-                                            <div>
-                                                <h5 class="mb-2">Logo Design</h5>
-
-                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                            </div>
-
-                                            <span class="badge bg-design rounded-pill ms-auto">100</span>
-                                        </div>
-
-                                        <img src="{{ asset('publicassets/images/topics/colleagues-working-cozy-office-medium-shot.png') }}"
-                                            class="custom-block-image img-fluid" alt="">
-                                    </a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel"
-                        aria-labelledby="marketing-tab" tabindex="0">
+                    <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel" aria-labelledby="marketing-tab"
+                        tabindex="0">
+
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
-                                        <div class="d-flex">
-                                            <div>
-                                                <h5 class="mb-2">Advertising</h5>
+                            @foreach ($topics as $topic)
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
 
-                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{{ route('topic-detail', $topic['id']) }}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">{{ Str::limit($topic['title'], 20, '.....') }}
+                                                    </h5>
+
+                                                    <p class="mb-0">{{ Str::limit($topic['content'], 20, '.....') }}
+                                                    </p>
+                                                </div>
+
+                                                <span
+                                                    class="badge bg-advertising rounded-pill ms-auto">{{ $topic['no_of_views'] }}</span>
                                             </div>
 
-                                            <span class="badge bg-advertising rounded-pill ms-auto">30</span>
-                                        </div>
-
-                                        <img src="{{ asset('publicassets/images/topics/undraw_online_ad_re_ol62.png') }}"
-                                            class="custom-block-image img-fluid" alt="">
-                                    </a>
+                                            <img src="{{ asset('adminassets/images/topics/' . $topic->image) }}"
+                                                class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
-                                        <div class="d-flex">
-                                            <div>
-                                                <h5 class="mb-2">Video Content</h5>
-
-                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                            </div>
-
-                                            <span class="badge bg-advertising rounded-pill ms-auto">65</span>
-                                        </div>
-
-                                        <img src="{{ asset('publicassets/images/topics/undraw_Group_video_re_btu7.png') }}"
-                                            class="custom-block-image img-fluid" alt="">
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 col-12">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
-                                        <div class="d-flex">
-                                            <div>
-                                                <h5 class="mb-2">Viral Tweet</h5>
-
-                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                            </div>
-
-                                            <span class="badge bg-advertising rounded-pill ms-auto">50</span>
-                                        </div>
-
-                                        <img src="{{ asset('publicassets/images/topics/undraw_viral_tweet_gndb.png') }}"
-                                            class="custom-block-image img-fluid" alt="">
-                                    </a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
+
                     </div>
 
                     <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel" aria-labelledby="finance-tab"
@@ -178,7 +115,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0">
                                 <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
+                                    <a href="{{ route('topic-detail', $topic['id']) }}">
                                         <div class="d-flex">
                                             <div>
                                                 <h5 class="mb-2">Investment</h5>
@@ -209,7 +146,8 @@
                                                     adipisicing elit. Sint animi necessitatibus aperiam
                                                     repudiandae nam omnis</p>
 
-                                                <a href="topics-detail.html" class="btn custom-btn mt-2 mt-lg-3">Learn
+                                                <a href="{{ route('topic-detail', $topic['id']) }}"
+                                                    class="btn custom-btn mt-2 mt-lg-3">Learn
                                                     More</a>
                                             </div>
 
@@ -248,7 +186,7 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                                 <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
+                                    <a href="{{ route('topic-detail', $topic['id']) }}">
                                         <div class="d-flex">
                                             <div>
                                                 <h5 class="mb-2">Composing Song</h5>
@@ -267,7 +205,7 @@
 
                             <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                                 <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
+                                    <a href="{{ route('topic-detail', $topic['id']) }}">
                                         <div class="d-flex">
                                             <div>
                                                 <h5 class="mb-2">Online Music</h5>
@@ -286,7 +224,7 @@
 
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
+                                    <a href="{{ route('topic-detail', $topic['id']) }}">
                                         <div class="d-flex">
                                             <div>
                                                 <h5 class="mb-2">Podcast</h5>
@@ -310,7 +248,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3">
                                 <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
+                                    <a href="{{ route('topic-detail', $topic['id']) }}">
                                         <div class="d-flex">
                                             <div>
                                                 <h5 class="mb-2">Graduation</h5>
@@ -329,7 +267,7 @@
 
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
+                                    <a href="{{ route('topic-detail', $topic['id']) }}">
                                         <div class="d-flex">
                                             <div>
                                                 <h5 class="mb-2">Educator</h5>
@@ -340,7 +278,7 @@
                                             <span class="badge bg-education rounded-pill ms-auto">75</span>
                                         </div>
 
-                                        <img src="{{ asset('publicassets/images/topics/undraw_Educator_re_ju47.png') }}"
+                                        <img src="{{ asset('publicassets/images/topics/' . $topic->image) }}"
                                             class="custom-block-image img-fluid" alt="">
                                     </a>
                                 </div>

@@ -31,7 +31,7 @@ class ContactMessageController extends Controller
 
         Contact::create($data);
         Mail::to('Rehab@example.com')->send(new ContactMessageMail($data));
-        return redirect()->route('messages.index');
+        return ('Your message has been sent successfully!');
     }
 
     //////message pages
