@@ -17,7 +17,7 @@ class Category extends Model
     ];
     public function topics()
     {
-        return $this->hasMany(Topic::class);
+        return $this->hasMany(Topic::class, 'category_id');
 
     }
 }

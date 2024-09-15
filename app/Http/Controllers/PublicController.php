@@ -10,9 +10,13 @@ class PublicController extends Controller
 {
     public function index()
     {
-        $categories = Category::get();
-        // $topics=$this->topicData();
-        $topics = Topic::latest()->take(3)->get();
+        
+        $categories = Category::with(['topics' => function ($query) {
+            $query->where('published', 1)->take(3);
+        }])->limit(5)->get();
+
+        //dd($categories);
+         $topics = Topic::latest()->take(3)->get();
         $testimonials = Testimonial::where('published', 1)->latest()->take('3')->get();
         return view('public.index', compact('testimonials', 'categories', 'topics'));
     }
@@ -24,20 +28,17 @@ class PublicController extends Controller
 
     public function testimonial()
     {
-        $testimonials = Testimonial::where('published', 1)->latest()->take('3')->get();
-       // $testimonials = Testimonial::where('published', 1)->get();
+        // $testimonials = Testimonial::where('published', 1)->latest()->take('3')->get();
+        $testimonials = Testimonial::where('published', 1)->get();
         return view('public.testimonial', compact('testimonials'));
 
         // return view('public.testimonial');
     }
 
-    public function topicdetails(String $id)
+    public function topicdetail(String $id)
     {
-        $topic = Topic::findOrFail($id);
-
+        $topic = Topic::where('published', '=', 1)->find($id);
         return view('public.topic-detail', compact('topic'));
-
-        //return view('public.topic-detail');
     }
 
     public function topiclisting()
@@ -49,15 +50,20 @@ class PublicController extends Controller
     public function category()
     {
 
-        $categories = Category::get();
+        $categories = Category::with(['topics' => function ($query) {
+            $query->where('published', 1)->take(3);
+        }])->limit(5)->get();
+
+        // $categories = Category::get();
+     
         return view('public.category', compact('categories'));
     }
 
-    //     public function show(string $id)
-    //     {
-    //         $topic= Topic::where('published', '=', 1)->find($id);
-    //         return view('public.job-detail', compact('topic'));
-    //     }
+        // public function show(string $id)
+        // {
+        //     $topic= Topic::where('published', '=', 1)->find($id);
+        //     return view('public.job-detail', compact('topic'));
+        // }
 
     //     public function jobscategories()
     //     {
