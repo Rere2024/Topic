@@ -6,7 +6,6 @@
 <body class="topics-listing-page" id="top">
     <main>
 
-
         @yield('content')
 
     </main>

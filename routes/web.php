@@ -22,7 +22,7 @@ Route::group([
     Route::get('contact', 'contact')->name('contact-us');
     Route::get('testimonial', 'testimonial')->name('testimonial');
     Route::get('topic-listing', 'topiclisting')->name('topiclisting');
-    Route::get('/{id}/topic-details', 'topicdetail')->name('topic-detail');
+    Route::get('topic-details', 'topicdetail')->name('topic-detail');
 });
 
 //admin
