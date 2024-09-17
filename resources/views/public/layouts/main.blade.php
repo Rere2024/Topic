@@ -3,10 +3,10 @@
 
 @include('public.includes.head')
 
-<body class="topics-listing-page" id="top">
+<body  id="top">
     <main>
 
-        @yield('content')
+        @yield('data')
 
     </main>
     @include('public.includes.footer')

@@ -14,8 +14,8 @@ class UserController extends Controller
     //index
     public function index()
     {
-        // $users = User::latest()->paginate(10);
-        $users = User::get();
+        $users = User::latest()->paginate(10);
+        // $users = User::get();
         return view('admin.users.index', compact('users'));
     }
 
@@ -61,21 +61,29 @@ class UserController extends Controller
     //update
     public function update(Request $request, string $id)
     {
+        $user = User::findOrFail($id);
         $data = $request->validate([
 
             'first_name' =>  'required|string|max:255',
             'last_name' =>  'required|string|max:255',
-            'user_name' => 'required|string|max:255|unique:users,user_name,',
-            'email' => 'required|email|max:255|unique:users,email,',
-            'password' => 'nullable|string|min:8',
+            'user_name' => 'required|string|max:255|unique:users,user_name,' . $id,
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+            'password' => 'required|string|min:8|confirmed',
             'phone' => 'required|string|regex:/^[\d\s\-\+\(\)]+$/',
         ]);
 
         // dd($data);
         $data['active'] = isset($request->active);
-        $data['password'] = Hash::make($data['password']);
+        // $data['password'] = Hash::make($data['password']);
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($data['password']);
+        } else {
+            unset($data['password']);
+        }
+
 
         User::where('id', $id)->update($data);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 }

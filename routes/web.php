@@ -22,8 +22,13 @@ Route::group([
     Route::get('contact', 'contact')->name('contact-us');
     Route::get('testimonial', 'testimonial')->name('testimonial');
     Route::get('topic-listing', 'topiclisting')->name('topiclisting');
-    Route::get('topic-details', 'topicdetail')->name('topic-detail');
+    Route::get('/trending-topics','trendingTopics');
+    Route::get('show/{id}', 'show')->name('test');
+
 });
+
+// Route::get('/topic/{id}', [PublicController::class, 'show'])->name('topic.show');
+
 
 //admin
 Route::group([
@@ -150,6 +155,6 @@ Route::post('contact-us', [ContactMessageController::class, 'sendMessage'])->nam
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

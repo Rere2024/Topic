@@ -31,7 +31,7 @@
                     <div class="input-group mb-3">
                         <input type="text" placeholder="Username"
                             class="form-control @error('user_name') is-invalid @enderror" name="user_name"
-                            value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>>
+                            value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>
                         <img src="{{ asset('adminassets/images/user-svgrepo-com.svg') }}" alt=""
                             class="input-group-text">
                         @error('user_name')
@@ -44,7 +44,7 @@
                     <div class="input-group mb-3">
                         <input type="password" placeholder="Password"
                             class="form-control @error('password') is-invalid @enderror" name="password" required
-                            autocomplete="new-password">>
+                            autocomplete="new-password">
                         <img src="{{ asset('adminassets/images/password-svgrepo-com.svg') }}" alt=""
                             class="input-group-text">
                         @error('password')

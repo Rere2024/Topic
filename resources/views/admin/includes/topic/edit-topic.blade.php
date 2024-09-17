@@ -19,14 +19,15 @@
             <div class="form-group mb-3 row">
                 <label for="" class="form-label col-md-2 fw-bold text-md-end">Category</label>
                 <div class="col-md-10">
-                    <select name="category_id" id="" required class="form-control"
-                        value="{{ old('category_id') }}">
+                    <select name="category_id" id="" required class="form-control">
                         <option value="">Select Category</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
-                                {{ $category->category_name }}</option>
+                            <option value="{{ $category->id }}" @selected(old('category_id', $topics->category_id) == $category->id)>
+                                {{ $category->category_name }}
+                            </option>
                         @endforeach
                     </select>
+
                     @error('category_id')
                         <div class="alert alert-warning">{{ $message }}</div>
                     @enderror
@@ -59,7 +60,7 @@
                 <label for="" class="form-label col-md-2 fw-bold text-md-end">Trending:</label>
                 <div class="col-md-10">
                     <input type="checkbox" class="form-check-input" style="padding: 0.7rem;" name="trending"
-                        value="1" @checked(old('trending', $topics->published)) />
+                        value="1" @checked(old('trending', $topics->trendnig)) />
                 </div>
             </div>
             <div class="form-group mb-3 row">
@@ -75,7 +76,7 @@
                 <div class="col-md-10">
                     <input type="file" class="form-control" style="padding: 0.7rem; margin-bottom: 10px;"
                         name="image" value="{{ old('image', $topics['image']) }}" />
-                    <img src="{{ asset('adminassets/images/topics/' . $topics['image']) }}" alt="{{$topics->name}}"
+                    <img src="{{ asset('adminassets/images/topics/' . $topics['image']) }}" alt="{{ $topics->name }}"
                         style="width: 10rem;">
                     @error('image')
                         <div class="alert alert-warning">{{ $message }}</div>

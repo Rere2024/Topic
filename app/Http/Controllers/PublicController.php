@@ -10,15 +10,18 @@ class PublicController extends Controller
 {
     public function index()
     {
-        
+        //dd($categories);
+        // $topics = Topic::latest()->take(3)->get();
+
+        $firstFeatured = Topic::orderBy('id', 'desc')->where('published', 1)->first();
+        $secondFeatured = Topic::where('published', 1)->latest()->skip(1)->first();
+
         $categories = Category::with(['topics' => function ($query) {
             $query->where('published', 1)->take(3);
         }])->limit(5)->get();
 
-        //dd($categories);
-         $topics = Topic::latest()->take(3)->get();
         $testimonials = Testimonial::where('published', 1)->latest()->take('3')->get();
-        return view('public.index', compact('testimonials', 'categories', 'topics'));
+        return view('public.index', compact('testimonials', 'categories','firstFeatured', 'secondFeatured' ));
     }
 
     public function contact()
@@ -31,19 +34,23 @@ class PublicController extends Controller
         // $testimonials = Testimonial::where('published', 1)->latest()->take('3')->get();
         $testimonials = Testimonial::where('published', 1)->get();
         return view('public.testimonial', compact('testimonials'));
-
-        // return view('public.testimonial');
     }
 
-    public function topicdetail(String $id)
+
+    public function show(string $id)
     {
-        $topic = Topic::where('published', '=', 1)->find($id);
-        return view('public.topic-detail', compact('topic'));
+
+        $topic = Topic::with('category')->findOrFail($id);
+        // dd($topic);
+        return view('public.details', compact('topic'));
+
     }
+
 
     public function topiclisting()
     {
-        // $topics=$this->topicData();
+
+        $topics = Topic::where('published', 1)->paginate(3);
         return view('public.topic-listing', compact('topics'));
     }
 
@@ -55,31 +62,16 @@ class PublicController extends Controller
         }])->limit(5)->get();
 
         // $categories = Category::get();
-     
+
         return view('public.category', compact('categories'));
     }
 
-        // public function show(string $id)
-        // {
-        //     $topic= Topic::where('published', '=', 1)->find($id);
-        //     return view('public.job-detail', compact('topic'));
-        // }
+    public function trendingTopics()
+{
+    $topics = Topic::where('published', 1)
+    ->orderBy('views', 'desc')
+    ->paginate(3);
 
-    //     public function jobscategories()
-    //     {
-    //         $categories = Category::with(['jobs' => function ($query) { $query->where('published', 1)->take(3); }])->limit(4)->get();
-    //         // dd($categories);
-    //        // return view('public.pages.jobs_categories', compact('categories'));
-    //         return view('public.pages.jobs', compact('categories'));
-    //     }
-
-    // public function topicData(){
-    //     $design = Topic::where('published', 1)->where('design',1)->get();
-    //     $markting = Topic::where('published', 1)->where('markting')->get();
-    //     $finance = Topic::where('published', 1)->where('finance')->get();
-    //     $music = Topic::where('published', 1)->where('music')->get();
-    //     $education = Topic::where('published', 1)->where('education')->get();
-    //     $topics=['design'=>$design,'markting'=>$markting,'finance'=>$finance,'music'=>$music,'education'=>$education];
-    //     return $topics;
-    // }
+    return view('trending-topics', compact('topics'));
+}
 }

@@ -32,7 +32,7 @@ class TopicController extends Controller
     public function show(string $id)
     {
 
-        $topic = Topic::findOrFail($id);
+        $topic = Topic::with('category')->findOrFail($id);
         return view('admin.topics.topic_details', compact('topic'));
     }
 

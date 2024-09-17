@@ -27,11 +27,19 @@
                                           <img class="img-md rounded-circle"
                                               src="{{ asset('adminassets/images/avatar-default.svg') }}"
                                               alt="Profile image" width="80" height="80" />
-                                          <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                                          <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                                          <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
+                                          <p class="fw-light text-muted mb-0">{{ Auth::user()->email }}</p>
                                       </div>
-                                      <a class="dropdown-item">My Profile</a>
-                                      <a class="dropdown-item">Sign Out</a>
+                                      <a class="dropdown-item" href="{{ route('register') }}"> My Profile
+                                      </a>
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
+                                          @csrf
+                                      </form>
+                                      <a class="dropdown-item" href="#"
+                                          onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                          Sign Out
+                                      </a>
                                       <p class="footer" style="padding-top: 15px; font-size: 9px; text-align: center">
                                           Privacy Policy . Terms . Cookies
                                       </p>
@@ -88,7 +96,8 @@
                                   <li>
                                       <hr class="dropdown-divider" />
                                   </li>
-                                  <li><a class="dropdown-item" href="{{ route('categories.index') }}">All categories</a>
+                                  <li><a class="dropdown-item" href="{{ route('categories.index') }}">All
+                                          categories</a>
                                   </li>
                               </ul>
                           </li>

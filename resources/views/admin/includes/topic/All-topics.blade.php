@@ -50,6 +50,8 @@
                                     href="{{ route('topics.edit', $topic['id']) }}">
                                     <img src="{{ asset('adminassets/images/edit-svgrepo-com.svg') }}"></a></td>
                             <td>
+
+                            
                                 <form action="{{ route('topics.delete', $topic->id) }}"
                                     onclick=" return confirm('Are you sure you want to delete?')"method="POST">
                                     @csrf

@@ -15,8 +15,7 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link {{ $loop->first ? 'active' : '' }}" id="design-tab" data-bs-toggle="tab"
                             data-bs-target="#tab-{{ $category->id }}" type="button" role="tab"
-                            aria-controls="design-tab-pane"
-                            aria-selected="true">{{ $category->category_name }}</button>
+                            aria-controls="design-tab-pane" aria-selected="true">{{ $category->category_name }}</button>
                     </li>
                 @endforeach
             </ul>
@@ -34,7 +33,7 @@
                                 @foreach ($category->topics as $topic)
                                     <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                                         <div class="custom-block bg-white shadow-lg">
-                                            <a href="{{ route('topic-detail', $topic['id']) }}">
+                                            <a href="{{ route('test', $topic->id) }}">
                                                 <div class="d-flex">
                                                     <div>
                                                         <h5 class="mb-2">

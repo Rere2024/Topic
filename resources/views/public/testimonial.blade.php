@@ -1,5 +1,5 @@
 @extends('public.layouts.main')
-@section('content')
+@section('data')
     @include('public.includes.navbar')
     @include('public.includes.testimonialheader')
     @include('public.includes.testimonialpadding')
