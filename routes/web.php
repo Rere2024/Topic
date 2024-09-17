@@ -5,8 +5,10 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\TopicController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PublicController;
+
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -158,3 +160,4 @@ Route::post('/register', [RegisterController::class, 'register']);
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

@@ -30,7 +30,7 @@
                                           <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
                                           <p class="fw-light text-muted mb-0">{{ Auth::user()->email }}</p>
                                       </div>
-                                      <a class="dropdown-item" href="{{ route('register') }}"> My Profile
+                                      <a class="dropdown-item" href="{{ route('profile') }}"> My Profile
                                       </a>
                                       <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                           style="display: none;">
