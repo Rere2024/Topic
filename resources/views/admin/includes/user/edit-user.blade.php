@@ -46,7 +46,8 @@
                 <label for="" class="form-label col-md-2 fw-bold text-md-end">Password:</label>
                 <div class="col-md-10">
                     <input type="password" placeholder="Password" class="form-control py-2" name="password"
-                        value="{{ old('password', $user['password']) }}" />
+                         />
+
                     @error('password')
                         <div class="alert alert-warning">{{ $message }}</div>
                     @enderror

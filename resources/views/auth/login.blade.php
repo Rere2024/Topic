@@ -24,7 +24,7 @@
                 <img src="{{ asset('adminassets/images/rear-view-young-college-student.jpg') }}" alt="">
             </div>
             <div class="col-md-7">
-                <form method="POST" action="{{ route('login') }}"
+                <form method="POST" action="{{ route('users.index') }}"
                     class="text-center h-100 px-3 d-flex flex-column justify-content-center">
                     @csrf
                     <h3 class="fw-semibold mb-5">LOGIN FORM</h3>

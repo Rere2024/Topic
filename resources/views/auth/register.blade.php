@@ -61,6 +61,19 @@
                         @enderror
                     </div>
                     <div class="input-group  mb-3">
+                        <input type="number" placeholder="Phone"
+                            class="form-control @error('phone') is-invalid @enderror" name="phone"
+                            value="{{ old('phone') }}" required autocomplete="phone">
+                        <img src="{{ asset('adminassets/images/password-svgrepo-com.svg') }}" alt=""
+                            class="input-group-text">
+                        @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    
+                    <div class="input-group  mb-3">
                         <input type="text" placeholder="Email Address"
                             class="form-control @error('email') is-invalid @enderror" name="email"
                             value="{{ old('email') }}" required autocomplete="email">

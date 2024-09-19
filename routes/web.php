@@ -24,9 +24,7 @@ Route::group([
     Route::get('contact', 'contact')->name('contact-us');
     Route::get('testimonial', 'testimonial')->name('testimonial');
     Route::get('topic-listing', 'topiclisting')->name('topiclisting');
-    Route::get('/trending-topics','trendingTopics');
     Route::get('show/{id}', 'show')->name('test');
-
 });
 
 // Route::get('/topic/{id}', [PublicController::class, 'show'])->name('topic.show');
@@ -124,6 +122,7 @@ Route::prefix('admin')->group(function () {
         Route::post('store',  'store')->name('store');
         Route::get('{id}/edit',  'edit')->name('edit');
         Route::put('{id}/update',  'update')->name('update');
+        Route::post('', 'index')->name('index');
         // Route::put('{id}/store', 'store')->name('store');
     });
 

@@ -14,12 +14,12 @@
 
                                        <div class="custom-block-topics-listing-info d-flex">
                                            <div>
-                                               <h5 class="mb-2">{{ Str::limit($topic['title'], 20, '.....') }}</h5>
+                                               <h5 class="mb-2">{{$topic['title'] }}</h5>
 
                                                <p class="mb-0"> {{ Str::limit($topic['content'], 100, '.....') }}.
                                                </p>
 
-                                               <a href="" class="btn custom-btn mt-3 mt-lg-4">Learn
+                                               <a href="{{ route('test', $topic->id) }}" class="btn custom-btn mt-3 mt-lg-4">Learn
                                                    More</a>
                                            </div>
 
@@ -43,9 +43,9 @@
                                    {{ $topics->links('pagination::bootstrap-4') }}
                                    {{-- <li class="page-item active" aria-current="page">
                                    <a class="page-link" href="#">1</a>
-                               </li>
+                               </li> --}}
 
-                               <li class="page-item">
+                               {{--<li class="page-item">
                                    <a class="page-link" href="#">2</a>
                                </li>
 

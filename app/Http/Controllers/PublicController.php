@@ -10,19 +10,30 @@ class PublicController extends Controller
 {
     public function index()
     {
-        //dd($categories);
-        // $topics = Topic::latest()->take(3)->get();
 
-        $firstFeatured = Topic::orderBy('id', 'desc')->where('published', 1)->first();
-        $secondFeatured = Topic::where('published', 1)->latest()->skip(1)->first();
+        $firstFeatured = Topic::orderBy('id', 'desc')
+        ->where('published', 1)
+        ->first();
+        $secondFeatured = Topic::where('published', 1)
+        ->latest()
+        ->skip(1)
+        ->first();
 
-        $categories = Category::with(['topics' => function ($query) {
-            $query->where('published', 1)->take(3);
-        }])->limit(5)->get();
+        $categories = Category::with(['topics'
+         => function ($query) {$query
+        ->where('published', 1)
+        ->take(3);
+        }])->limit(5)
+        ->get();
 
-        $testimonials = Testimonial::where('published', 1)->latest()->take('3')->get();
-        return view('public.index', compact('testimonials', 'categories','firstFeatured', 'secondFeatured' ));
+        $testimonials = Testimonial::where('published', 1)
+        ->latest()
+        ->take('3')
+        ->get();
+        return view('public.index', compact('testimonials', 'categories', 'firstFeatured', 'secondFeatured',));
     }
+
+
 
     public function contact()
     {
@@ -43,35 +54,42 @@ class PublicController extends Controller
         $topic = Topic::with('category')->findOrFail($id);
         // dd($topic);
         return view('public.details', compact('topic'));
-
     }
 
 
     public function topiclisting()
     {
 
-        $topics = Topic::where('published', 1)->paginate(3);
-        return view('public.topic-listing', compact('topics'));
+
+        $firstTrending = Topic::where('published', 1)
+        ->where('trending', 1)
+        ->orderBy('no_of_views', 'desc')
+        ->take(1)
+        ->get();
+        $secondTrending = Topic::where('published', 1)
+        ->where('trending', 1)
+        ->latest()
+        ->skip(1)
+        ->take(1)
+        ->get();
+
+        $topics = Topic::where('published', 1)
+        ->paginate(3);
+
+        return view('public.topic-listing', compact('topics', 'firstTrending', 'secondTrending'));
     }
 
     public function category()
     {
 
-        $categories = Category::with(['topics' => function ($query) {
-            $query->where('published', 1)->take(3);
-        }])->limit(5)->get();
-
-        // $categories = Category::get();
+        $categories = Category::with(['topics'
+         => function ($query) {$query
+        ->where('published', 1)
+        ->take(3);
+        }])->limit(5)
+        ->get();
 
         return view('public.category', compact('categories'));
     }
 
-    public function trendingTopics()
-{
-    $topics = Topic::where('published', 1)
-    ->orderBy('views', 'desc')
-    ->paginate(3);
-
-    return view('trending-topics', compact('topics'));
-}
 }

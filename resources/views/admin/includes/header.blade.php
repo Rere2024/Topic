@@ -3,7 +3,7 @@
               <div class="container">
                   <div class="row justify-content-between">
                       <div class="col-md-3 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
-                          <a href="#" class="navbar-brand fs-2 fw-bold">
+                          <a href="{{ url('/') }}" class="navbar-brand fs-2 fw-bold">
                               <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
                                   <path fill="currentColor"
                                       d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
@@ -27,8 +27,10 @@
                                           <img class="img-md rounded-circle"
                                               src="{{ asset('adminassets/images/avatar-default.svg') }}"
                                               alt="Profile image" width="80" height="80" />
-                                          <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
-                                          <p class="fw-light text-muted mb-0">{{ Auth::user()->email }}</p>
+                                          <p class="mb-1 mt-3 font-weight-semibold"></p>
+                                          {{-- {{ Auth::user()->first_name }}
+                                          {{ Auth::user()->email }} --}}
+                                          <p class="fw-light text-muted mb-0"></p>
                                       </div>
                                       <a class="dropdown-item" href="{{ route('profile') }}"> My Profile
                                       </a>
