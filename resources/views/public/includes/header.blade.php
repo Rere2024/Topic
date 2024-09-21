@@ -7,7 +7,8 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('index') }}">Homepage</a></li>
 
-                        <li class="breadcrumb-item {{ $loop->first ? 'active' : '' }}" aria-current="page">Contact Form</li>
+                        <li class="breadcrumb-item {{ $loop->first ? 'active' : '' }}" aria-current="page">Contact Form
+                        </li>
                     </ol>
                 </nav>
 

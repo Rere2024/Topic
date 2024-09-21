@@ -7,8 +7,3 @@
     @include('public.includes.topicpadding')
     @include('public.includes.topicfooterjs')
 @endsection
-
-
-
-
-

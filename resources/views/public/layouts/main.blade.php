@@ -3,7 +3,7 @@
 
 @include('public.includes.head')
 
-<body  id="top">
+<body id="top">
     <main>
 
         @yield('public')

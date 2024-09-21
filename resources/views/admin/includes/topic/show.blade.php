@@ -10,7 +10,7 @@
             <div class="container-fluid g-0 pt-3 pb-5 px-lg-5 px-md-3 px-1">
                 <div class="img-wrapper">
                     <img src="{{ asset('adminassets/images/topics/' . $topic->image) }}"
-                        class="rounded image-center border-5 rounded-4" alt="{{$topic->name}}" />
+                        class="rounded image-center border-5 rounded-4" alt="{{ $topic->name }}" />
                 </div>
                 <!-- article -->
                 <div class="mx-auto pt-4" style="max-width: 1225px">

@@ -86,11 +86,14 @@ class PublicController extends Controller
         $categories = Category::with(['topics'
         => function ($query) {
             $query
-          ->where('published', 1)
-          ->take(3);
+            ->where('published', 1)
+            ->take(3);
         }])->limit(5)
-          ->get();
+            ->get();
 
         return view('public.category', compact('categories'));
     }
+
+
+    
 }

@@ -14,12 +14,13 @@
 
                                        <div class="custom-block-topics-listing-info d-flex">
                                            <div>
-                                               <h5 class="mb-2">{{$topic['title'] }}</h5>
+                                               <h5 class="mb-2">{{ $topic['title'] }}</h5>
 
                                                <p class="mb-0"> {{ Str::limit($topic['content'], 100, '.....') }}.
                                                </p>
 
-                                               <a href="{{ route('test', $topic->id) }}" class="btn custom-btn mt-3 mt-lg-4">Learn
+                                               <a href="{{ route('test', $topic->id) }}"
+                                                   class="btn custom-btn mt-3 mt-lg-4">Learn
                                                    More</a>
                                            </div>
 
@@ -45,7 +46,7 @@
                                    <a class="page-link" href="#">1</a>
                                </li> --}}
 
-                               {{--<li class="page-item">
+                                   {{-- <li class="page-item">
                                    <a class="page-link" href="#">2</a>
                                </li>
 

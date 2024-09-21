@@ -37,8 +37,8 @@
                  <div class="col-md-10">
                      <input type="file" class="form-control" style="padding: 0.7rem; margin-bottom: 10px;"
                          name="image" value="{{ old('image', $testimonials['image']) }}" />
-                     <img src="{{ asset('adminassets/images/testimonials/' . $testimonials['image']) }}" alt="{{$testimonials->name}}"
-                         style="width: 10rem;">
+                     <img src="{{ asset('adminassets/images/testimonials/' . $testimonials['image']) }}"
+                         alt="{{ $testimonials->name }}" style="width: 10rem;">
                      @error('image')
                          <div class="alert alert-warning">{{ $message }}</div>
                      @enderror

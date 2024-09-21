@@ -14,7 +14,8 @@
                             <h2 class="text-white">Introduction to <br> Web Design 101</h2>
 
                             <div class="d-flex align-items-center mt-5">
-                                <a href="{{ route('test', $topic->id) }}" class="btn custom-btn custom-border-btn smoothscroll me-4">Read More</a>
+                                <a href="{{ route('test', $topic->id) }}"
+                                    class="btn custom-btn custom-border-btn smoothscroll me-4">Read More</a>
 
                                 <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
                             </div>
@@ -22,7 +23,8 @@
 
                         <div class="col-lg-5 col-12">
                             <div class="topics-detail-block bg-white shadow-lg">
-                                <img src="{{asset('publicassets/images/topics/undraw_Remote_design_team_re_urdx.png')}}" class="topics-detail-block-image img-fluid">
+                                <img src="{{ asset('publicassets/images/topics/undraw_Remote_design_team_re_urdx.png') }}"
+                                    class="topics-detail-block-image img-fluid">
                             </div>
                         </div>
 

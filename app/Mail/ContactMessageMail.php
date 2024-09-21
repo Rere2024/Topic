@@ -9,13 +9,13 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
- 
+
 
 class ContactMessageMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-public $data;
+    public $data;
     /**
      * Create a new message instance.
      */
@@ -31,7 +31,7 @@ public $data;
     {
         return new Envelope(
             subject: $this->data['subject'],
-        
+
             from: new Address($this->data['email'], $this->data['sender_name']),
         );
     }

@@ -1,8 +1,3 @@
-{{-- @extends('layouts.app')
-
-@section('content') --}}
-
-
 <!DOCTYPE html>
 <html>
 
@@ -77,7 +72,7 @@
                             </span>
                         @enderror
                     </div>
-                    
+
                     <div class="input-group  mb-3">
                         <input type="text" placeholder="Email Address"
                             class="form-control @error('email') is-invalid @enderror" name="email"
@@ -114,7 +109,8 @@
                         REGISTER
                         <img src="{{ asset('adminassets/images/arrow-sm-right-svgrepo-com.svg') }}" alt="">
                     </button>
-                    <a href="{{ route('login') }}" class="fw-semibold fs-6 text-decoration-none text-dark">Already have
+                    <a href="{{ route('login') }}" class="fw-semibold fs-6 text-decoration-none text-dark">Already
+                        have
                         account?</a>
                 </form>
             </div>
@@ -124,4 +120,3 @@
 </body>
 
 </html>
-{{-- @endsection --}}

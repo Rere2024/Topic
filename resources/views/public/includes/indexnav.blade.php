@@ -61,7 +61,7 @@
     </div>
 
 
-      {{-- @guest
+    {{-- @guest
                 <div class="d-none d-lg-block">
                     <a href="{{ route('register') }}" class="navbar-icon bi-person smoothscroll"></a>
                 </div>
@@ -86,5 +86,5 @@
         </div>
     </div> --}}
 
-    
+
 </nav>

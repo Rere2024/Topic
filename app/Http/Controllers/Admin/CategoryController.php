@@ -31,7 +31,7 @@ class CategoryController extends Controller
         ]);
 
         Category::create($data);
- 
+
         $categories = Category::get();
         return view('admin.categories.index', compact('categories'));
     }

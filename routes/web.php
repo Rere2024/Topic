@@ -4,12 +4,9 @@ use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\TopicController;
-use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PublicController;
-
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -104,7 +101,6 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         Route::post('store',  'store')->name('store');
         Route::get('trashed',  'showDeleted')->name('showDeleted');
         Route::get('{id}/edit',  'edit')->name('edit');
-        // Route::get('{id}/show',  'show')->name('show');
         Route::put('{id}/update',  'update')->name('update');
         Route::get('{id}/delete',  'destroy')->name('destroy');
         Route::delete('{id}/delete',  'delete')->name('delete');
@@ -124,8 +120,8 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         Route::get('{id}/edit',  'edit')->name('edit');
         Route::put('{id}/update',  'update')->name('update');
         Route::post('', 'index')->name('index');
-        Route::get('/profile', 'profile')->name('profile');
-        Route::post('/logout','logout')->name('logout');
+        // Route::get('profile', 'profile')->name('profile');
+        // Route::post('logout','logout')->name('logout');
     });
 
     //message
@@ -143,13 +139,11 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         Route::delete('{id}/delete',  'delete')->name('delete');
         Route::patch('{id}/restore',  'restore')->name('restore');
         Route::delete('{id}/force',  'forceDelete')->name('forceDelete');
-        // Route::get('contact-us',  'contactForm')->name('contactForm');
-        // Route::post('store',  'sendMessage')->name('sendMessage');
+        // Route::get('contact-us','contactForm')->name('contectForm');
+        // Route::post('contact-us','sendMessage')->name('sendMessage');
         Route::patch('/{id}/read', 'markAsRead')->name('markAsRead');
     });
 });
-
-
 
 
 Route::get('contact-us', [ContactMessageController::class, 'contactForm'])->name('contectForm');
@@ -166,10 +160,3 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes(['verify' => true]);
-
-
-
-
-// Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
-// Route::post('login', [LoginController::class, 'login']);
-// Route::post('logout', [LoginController::class, 'logout'])->name('logout');

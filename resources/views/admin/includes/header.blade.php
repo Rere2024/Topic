@@ -39,7 +39,7 @@
                                           @csrf
                                       </form>
 
-                                      
+
                                       <a class="dropdown-item" href="#"
                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                           Sign Out

@@ -22,7 +22,7 @@ class topicFactory extends Factory
             'category_id' => fake()->numberBetween(1, 10),
             'content' => fake()->sentence(),
             'no_of_views' => fake()->numberBetween(0, 500),
-            'published' => fake()->numberBetween(0,1),
+            'published' => fake()->numberBetween(0, 1),
             'trending' => fake()->numberBetween(0, 1),
 
         ];
