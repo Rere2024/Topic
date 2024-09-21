@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\TopicController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UserController;
@@ -27,7 +28,7 @@ Route::group([
     Route::get('show/{id}', 'show')->name('test');
 });
 
-// Route::get('/topic/{id}', [PublicController::class, 'show'])->name('topic.show');
+
 
 
 //admin
@@ -56,7 +57,7 @@ Route::group([
 });
 
 //categories
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('verified')->group(function () {
     Route::group([
         'prefix' => 'categories',
     ], function () {
@@ -123,7 +124,8 @@ Route::prefix('admin')->group(function () {
         Route::get('{id}/edit',  'edit')->name('edit');
         Route::put('{id}/update',  'update')->name('update');
         Route::post('', 'index')->name('index');
-        // Route::put('{id}/store', 'store')->name('store');
+        Route::get('/profile', 'profile')->name('profile');
+        Route::post('/logout','logout')->name('logout');
     });
 
     //message
@@ -156,7 +158,18 @@ Route::post('contact-us', [ContactMessageController::class, 'sendMessage'])->nam
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
-Auth::routes(['verify' => true]);
+
+Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+Auth::routes(['verify' => true]);
+
+
+
+
+// Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+// Route::post('login', [LoginController::class, 'login']);
+// Route::post('logout', [LoginController::class, 'logout'])->name('logout');

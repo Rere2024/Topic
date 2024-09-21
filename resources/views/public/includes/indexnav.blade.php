@@ -55,8 +55,36 @@
             </ul>
 
             <div class="d-none d-lg-block">
-                <a href="../admin/register.html" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{{ route('register') }}" class="navbar-icon bi-person smoothscroll"></a>
             </div>
         </div>
     </div>
+
+
+      {{-- @guest
+                <div class="d-none d-lg-block">
+                    <a href="{{ route('register') }}" class="navbar-icon bi-person smoothscroll"></a>
+                </div>
+                <div class="d-none d-lg-block">
+                    <a href="{{ route('login') }}" class="navbar-icon bi-box-arrow-in-right smoothscroll"></a>
+                </div>
+            @endguest
+
+            @auth
+                <div class="d-none d-lg-block">
+                    <a href="{{ route('profile') }}" class="navbar-icon bi-person-circle smoothscroll"></a>
+                </div>
+                <div class="d-none d-lg-block">
+                    <a href="{{ route('logout') }}" class="navbar-icon bi-box-arrow-right smoothscroll"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></a>
+                </div>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            @endauth
+        </div>
+    </div> --}}
+
+    
 </nav>

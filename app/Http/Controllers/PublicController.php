@@ -12,24 +12,26 @@ class PublicController extends Controller
     {
 
         $firstFeatured = Topic::orderBy('id', 'desc')
-        ->where('published', 1)
-        ->first();
+            ->where('published', 1)
+            ->first();
         $secondFeatured = Topic::where('published', 1)
-        ->latest()
-        ->skip(1)
-        ->first();
+            ->latest()
+            ->skip(1)
+            ->first();
 
         $categories = Category::with(['topics'
-         => function ($query) {$query
-        ->where('published', 1)
-        ->take(3);
+        => function ($query) {
+            $query
+            ->where('published', 1)
+            ->take(3);
         }])->limit(5)
-        ->get();
+            ->get();
 
         $testimonials = Testimonial::where('published', 1)
-        ->latest()
-        ->take('3')
-        ->get();
+            ->latest()
+            ->take('3')
+            ->get();
+
         return view('public.index', compact('testimonials', 'categories', 'firstFeatured', 'secondFeatured',));
     }
 
@@ -42,7 +44,6 @@ class PublicController extends Controller
 
     public function testimonial()
     {
-        // $testimonials = Testimonial::where('published', 1)->latest()->take('3')->get();
         $testimonials = Testimonial::where('published', 1)->get();
         return view('public.testimonial', compact('testimonials'));
     }
@@ -62,19 +63,19 @@ class PublicController extends Controller
 
 
         $firstTrending = Topic::where('published', 1)
-        ->where('trending', 1)
-        ->orderBy('no_of_views', 'desc')
-        ->take(1)
-        ->get();
+            ->where('trending', 1)
+            ->orderBy('no_of_views', 'desc')
+            ->take(1)
+            ->get();
         $secondTrending = Topic::where('published', 1)
-        ->where('trending', 1)
-        ->latest()
-        ->skip(1)
-        ->take(1)
-        ->get();
+            ->where('trending', 1)
+            ->latest()
+            ->skip(1)
+            ->take(1)
+            ->get();
 
         $topics = Topic::where('published', 1)
-        ->paginate(3);
+            ->paginate(3);
 
         return view('public.topic-listing', compact('topics', 'firstTrending', 'secondTrending'));
     }
@@ -83,13 +84,13 @@ class PublicController extends Controller
     {
 
         $categories = Category::with(['topics'
-         => function ($query) {$query
-        ->where('published', 1)
-        ->take(3);
+        => function ($query) {
+            $query
+          ->where('published', 1)
+          ->take(3);
         }])->limit(5)
-        ->get();
+          ->get();
 
         return view('public.category', compact('categories'));
     }
-
 }

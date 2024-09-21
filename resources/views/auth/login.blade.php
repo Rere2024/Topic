@@ -24,7 +24,7 @@
                 <img src="{{ asset('adminassets/images/rear-view-young-college-student.jpg') }}" alt="">
             </div>
             <div class="col-md-7">
-                <form method="POST" action="{{ route('users.index') }}"
+                <form method="POST" action="{{ route('login') }}"
                     class="text-center h-100 px-3 d-flex flex-column justify-content-center">
                     @csrf
                     <h3 class="fw-semibold mb-5">LOGIN FORM</h3>
@@ -39,12 +39,12 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-
                     </div>
+
                     <div class="input-group mb-3">
                         <input type="password" placeholder="Password"
                             class="form-control @error('password') is-invalid @enderror" name="password" required
-                            autocomplete="new-password">
+                            {{-- autocomplete="new-password"> --}} autocomplete="current-password">
                         <img src="{{ asset('adminassets/images/password-svgrepo-com.svg') }}" alt=""
                             class="input-group-text">
                         @error('password')
@@ -53,17 +53,17 @@
                             </span>
                         @enderror
                     </div>
-                    <button class="btn btn-dark px-5 mb-2">
+
+                    <button type="submit" class="btn btn-dark px-5 mb-2">
                         LOGIN
                         <img src="{{ asset('adminassets/images/arrow-sm-right-svgrepo-com.svg') }}" alt="">
                     </button>
-                    <a href="{{ route('register') }}" class="fw-semibold fs-6 text-decoration-none text-dark">New
-                        User?</a>
+
+                    <a href="{{ route('register') }}">New User?</a>
                 </form>
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

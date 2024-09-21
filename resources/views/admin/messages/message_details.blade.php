@@ -1,4 +1,4 @@
 @extends('admin.layouts.main')
-@section('content')
+@section('admin')
     @include('admin.includes.message.message-subject')
 @endsection

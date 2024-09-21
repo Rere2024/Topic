@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Models\User;
 
 class RegisterController extends Controller
 {
@@ -40,30 +40,22 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-
-
     /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-
-
-
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'user_name' => ['required', 'string', 'max:255', 'unique:users'],
+            'first_name' => ['required','string','max:255'],
+            'last_name' =>  ['required','string','max:255'],
+            'user_name' => ['required','string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' => ['required','string','regex:/^[\d\s\-\+\(\)]+$/'],
-            
-
         ]);
-
     }
 
     /**
@@ -80,9 +72,7 @@ class RegisterController extends Controller
             'user_name' => $data['user_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            // 'active' => false ,
-
+            'phone' => $data['phone'],
         ]);
-
     }
 }

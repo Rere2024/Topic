@@ -6,7 +6,7 @@
 <body  id="top">
     <main>
 
-        @yield('data')
+        @yield('public')
 
     </main>
     @include('public.includes.footer')

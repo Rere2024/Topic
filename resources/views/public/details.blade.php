@@ -1,5 +1,5 @@
 @extends('public.layouts.main')
-@section('data')
+@section('public')
     @include('public.includes.detailhead')
     @include('public.includes.navbar')
     @include('public.includes.detailheader')

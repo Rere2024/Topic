@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-use Illuminate\Http\Request;
-use App\Models\User;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /*
@@ -40,34 +39,14 @@ class LoginController extends Controller
     }
 
 
-    // protected function credentials(Request $request)
-    // {
-    //     $credentials = $request->only($this->username(), 'password');
-    //     $credentials['active'] = 1; // Check if the user is active
-    //     return $credentials;
-    // }
+    public function username()
+    {
+        return 'user_name';
+    }
 
-    // protected function sendFailedLoginResponse(Request $request)
-    // {
-    //     $this->validateLogin($request);
-
-    //     if ($this->hasTooManyLoginAttempts($request)) {
-    //         $this->fireLockoutEvent($request);
-    //         throw $this->buildLockoutResponse($request);
-    //     }
-
-    //     $user = User::where($this->username(), $request->{$this->username()})->first();
-
-    //     if ($user && !$user->active) {
-    //         return redirect()->back()->withErrors([
-    //             $this->username() => ['Your account is inactive. Please contact support.'],
-    //         ]);
-    //     }
-
-    //     $this->incrementLoginAttempts($request);
-
-    //     throw $this->validationException($request, $this->credentials($request));
-    // }
+    // Ensure your credentials method aligns if overridden
+    protected function credentials(Request $request)
+    {
+        return $request->only($this->username(), 'password');
+    }
 }
-
-

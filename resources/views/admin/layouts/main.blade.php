@@ -6,7 +6,7 @@
    <body>
        @include('admin.includes.header')
 
-       @yield('content')
+       @yield('admin')
 
        @include('admin.includes.footerjs')
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -15,14 +16,12 @@ class UserController extends Controller
     public function index()
     {
         $users = User::latest()->paginate(10);
-        // $users = User::get();
         return view('admin.users.index', compact('users'));
     }
 
     //create
     public function create()
     {
-        // $users = User::select('id')->get();
         return view('admin.users.create');
     }
 
@@ -46,7 +45,7 @@ class UserController extends Controller
         $data['password'] = Hash::make($data['password']);
 
         user::create($data);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 
 
@@ -68,13 +67,13 @@ class UserController extends Controller
             'last_name' =>  'required|string|max:255',
             'user_name' => 'required|string|max:255|unique:users,user_name,' . $id,
             'email' => 'required|email|max:255|unique:users,email,' . $id,
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8',
             'phone' => 'required|string|regex:/^[\d\s\-\+\(\)]+$/',
         ]);
 
         // dd($data);
         $data['active'] = isset($request->active);
-        // $data['password'] = Hash::make($data['password']);
+
 
         if ($request->filled('password')) {
             $data['password'] = Hash::make($data['password']);
@@ -82,8 +81,24 @@ class UserController extends Controller
             unset($data['password']);
         }
 
-
         User::where('id', $id)->update($data);
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
+    }
+
+
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('admin.users.profile', compact('user'));
+    }
+
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
