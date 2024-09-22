@@ -40,7 +40,7 @@
                                                             {{ Str::limit($topic['title'], 20, '.....') }}
                                                         </h5>
                                                         <p class="mb-0">
-                                                            {{ Str::limit($topic['content'], 20, '.....') }}
+                                                            {{ Str::limit($topic['content'], 50, '.....') }}
                                                         </p>
                                                     </div>
                                                     <span
