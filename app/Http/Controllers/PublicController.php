@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Testimonial;
 use App\Models\Category;
 use App\Models\Topic;
@@ -31,8 +32,8 @@ class PublicController extends Controller
             ->latest()
             ->take('3')
             ->get();
-
-        return view('public.index', compact('testimonials', 'categories', 'firstFeatured', 'secondFeatured',));
+            $topics = Topic::get();
+        return view('public.index', compact('testimonials', 'categories', 'firstFeatured', 'secondFeatured','topics'));
     }
 
 
@@ -95,5 +96,22 @@ class PublicController extends Controller
     }
 
 
-    
+    // public function bookmark(Request $request)
+    // {
+    //     // Validate the request
+    //     $data = $request->validate([
+    //         'topic_id' => 'required|integer',
+    //     ]);
+
+    //     // Get current bookmarks from the session
+    //     $bookmarks = session()->get('bookmarks', []);
+
+    //     // Add the topic_id to the bookmarks if it's not already there
+    //     if (!in_array($data['topic_id'], $bookmarks)) {
+    //         $bookmarks[] = $data['topic_id'];
+    //         session()->put('bookmarks', $bookmarks);
+    //     }
+
+    //     return redirect()->back()->with('success','Topic bookmarked successfully!');
+    // }
 }

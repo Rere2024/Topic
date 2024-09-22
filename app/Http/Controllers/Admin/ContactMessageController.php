@@ -92,4 +92,14 @@ class ContactMessageController extends Controller
         Contact::where('id', $id)->forceDelete($id);
         return redirect()->route('messages.index');
     }
+
+
+    public function subscribe(Request $request)
+    {
+        $validated = $request->validate([
+            'subscribe-email' => 'required|email'
+        ]);
+
+        return redirect()->back()->with('success', 'You have successfully subscribed to our newsletter!');
+    }
 }

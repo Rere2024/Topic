@@ -148,6 +148,7 @@ Route::prefix('admin')->middleware('verified')->group(function () {
 
 Route::get('contact-us', [ContactMessageController::class, 'contactForm'])->name('contectForm');
 Route::post('contact-us', [ContactMessageController::class, 'sendMessage'])->name('sendMessage');
+Route::post('/subscribe', [ContactMessageController::class, 'subscribe'])->name('subscribe');
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
@@ -156,6 +157,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
+// Route::post('/bookmark', [PublicController::class, 'bookmark'])->name('bookmark');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

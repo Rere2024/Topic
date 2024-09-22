@@ -90,6 +90,22 @@
                                 </ul>
 
                                 <a href="#" class="custom-icon bi-bookmark ms-auto"></a>
+
+                                {{-- @if($topics->isNotEmpty())
+                                @foreach($topics as $topic)
+                                    <h2>{{ $topic->title }}</h2>
+                                    <form action="{{ route('bookmark') }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <input type="hidden" name="topic_id" value="{{ $topic->id }}">
+                                        <button type="submit" class="custom-icon bi-bookmark ms-auto" style="border: none; background: none;">
+                                            Bookmark
+                                        </button>
+                                    </form>
+                                @endforeach
+                            @else
+                                <p>No topics available.</p>
+                            @endif --}}
+                            
                             </div>
 
                             <div class="section-overlay"></div>

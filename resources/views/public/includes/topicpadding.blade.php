@@ -9,7 +9,25 @@
 
                         <div
                             class="col-lg-5 col-12 subscribe-form-wrap d-flex justify-content-center align-items-center">
-                            <form class="custom-form subscribe-form" action="#" method="post" role="form">
+
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <form class="custom-form subscribe-form" action="{{ route('subscribe') }}" method="POST"
+                                role="form">
+                                @csrf
                                 <h4 class="mb-4 pb-2">Get Newsletter</h4>
 
                                 <input type="email" name="subscribe-email" id="subscribe-email"

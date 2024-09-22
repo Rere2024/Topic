@@ -14,7 +14,7 @@
                             <h2 class="text-white">Introduction to <br> Web Design 101</h2>
 
                             <div class="d-flex align-items-center mt-5">
-                                <a href="{{ route('test', $topic->id) }}"
+                                <a href="#topics-detail" 
                                     class="btn custom-btn custom-border-btn smoothscroll me-4">Read More</a>
 
                                 <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
