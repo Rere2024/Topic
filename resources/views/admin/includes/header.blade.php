@@ -28,8 +28,7 @@
                                               src="{{ asset('adminassets/images/avatar-default.svg') }}"
                                               alt="Profile image" width="80" height="80" />
                                           <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->user_name }}</p>
-                                          {{-- {{ Auth::user()->first_name }}
-                                          {{ Auth::user()->email }} --}}
+                                          
                                           <p class="fw-light text-muted mb-0">{{ Auth::user()->email }}</p>
                                       </div>
                                       <a class="dropdown-item" href="{{ route('profile') }}"> My Profile
