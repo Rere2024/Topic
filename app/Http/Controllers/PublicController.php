@@ -113,5 +113,5 @@ class PublicController extends Controller
     //     }
 
     //     return redirect()->back()->with('success','Topic bookmarked successfully!');
-    // }
+    //// }
 }
